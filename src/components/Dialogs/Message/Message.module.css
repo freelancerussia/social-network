@@ -1,0 +1,6 @@
+.dialogLink {
+   text-decoration: none;
+   color: rgb(173, 89, 41);
+}
+.dialogLink.active {
+}

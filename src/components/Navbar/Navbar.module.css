@@ -1,0 +1,21 @@
+.navbar {
+   grid-area: n;
+   background-color: rgb(63, 236, 40);
+   padding: 20px;
+   margin: 0px 10px 0px 0px;
+}
+
+.item {
+   color: #fff;
+   cursor: pointer;
+   transition: color 0.3s ease 0s;
+   text-decoration: none;
+}
+
+.active {
+   color: rgb(230, 173, 17);
+}
+.item:hover {
+   color: #fff;
+   color: rgb(45, 125, 245);
+}
