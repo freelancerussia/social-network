@@ -5,11 +5,15 @@
    margin: 0px 10px 0px 0px;
 }
 
+.links {
+}
+
 .item {
    color: #fff;
    cursor: pointer;
    transition: color 0.3s ease 0s;
    text-decoration: none;
+   display: block;
 }
 
 .active {
@@ -18,4 +22,12 @@
 .item:hover {
    color: #fff;
    color: rgb(45, 125, 245);
+}
+
+.friends {
+}
+
+.friendsList {
+   display: flex;
+   justify-content: space-between;
 }

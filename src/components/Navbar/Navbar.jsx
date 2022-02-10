@@ -1,26 +1,37 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Friend from './Friend/Friend';
 import classes from './Navbar.module.css'
 
-function Navbar() {
+function Navbar(props) {
+   let linkData = props.state.navBarLinks
+      .map(link => <NavLink key={link.id} className={navData => navData.isActive ? classes.active + ' ' + classes.item : classes.item} to={link.path}>{link.link}</NavLink>);
+
+   let friendsData = props.state.friends
+      .map(friend => <Friend key={friend.id} name={friend.name} src={friend.src}></Friend>)
    return (
       <div className={classes.navbar}>
+         <div className={classes.links}>
+            {linkData}
+         </div>
+         <div className={classes.friends}>
+            <h3>Friends</h3>
+            <div className={classes.friendsList}>
+               {friendsData}
+            </div>
+         </div>
+         {/* <div className="friends">
+            <h3>friends</h3>
+            <div className="friendsList">
+               <div className='friend'>
+                  <img src="https://www.prikol.ru/wp-content/gallery/october-2019/prikol-25102019-001.jpg" alt="" />
+                  <div>
+                     Andrew
+                  </div>
+               </div>
+            </div>
+         </div> */}
 
-         <div >
-            <NavLink className={navData => navData.isActive ? classes.active : classes.item} to="/profile">Profile</NavLink>
-         </div>
-         <div >
-            <NavLink className={navData => navData.isActive ? classes.active : classes.item} to="/news">News</NavLink>
-         </div>
-         <div >
-            <NavLink className={navData => navData.isActive ? classes.active : classes.item} to="/dialogs">Messages</NavLink>
-         </div>
-         <div >
-            <NavLink className={navData => navData.isActive ? classes.active : classes.item} to="/music">Music</NavLink>
-         </div>
-         <div >
-            <NavLink className={navData => navData.isActive ? classes.active : classes.item} to="/settings">Settings</NavLink>
-         </div>
       </div>
 
    );
