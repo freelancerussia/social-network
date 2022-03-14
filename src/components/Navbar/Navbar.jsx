@@ -20,18 +20,6 @@ function Navbar(props) {
                {friendsData}
             </div>
          </div>
-         {/* <div className="friends">
-            <h3>friends</h3>
-            <div className="friendsList">
-               <div className='friend'>
-                  <img src="https://www.prikol.ru/wp-content/gallery/october-2019/prikol-25102019-001.jpg" alt="" />
-                  <div>
-                     Andrew
-                  </div>
-               </div>
-            </div>
-         </div> */}
-
       </div>
 
    );
