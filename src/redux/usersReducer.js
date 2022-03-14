@@ -54,10 +54,10 @@ function usersReducer(state = initialState, action) {
 }
 
 
-export let toggleFollowedCreator = (userId) => ({ type: TOGGLE_FOLLOWED, userId });
-export let setUsersCreator = (users) => ({ type: SET_USERS, users });
-export let setTotalCountCreator = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount });
-export let setCurrentPageCreator = (pageNumber) => ({ type: SET_PAGE_NUMBER, pageNumber });
-export let toggleIsFetchingCreator = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+export let toggleFollowed = (userId) => ({ type: TOGGLE_FOLLOWED, userId });
+export let setUsers = (users) => ({ type: SET_USERS, users });
+export let setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount });
+export let setCurrentPage = (pageNumber) => ({ type: SET_PAGE_NUMBER, pageNumber });
+export let toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export default usersReducer;
