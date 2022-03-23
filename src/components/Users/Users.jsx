@@ -8,7 +8,7 @@ let Users = (props) => {
       return props.users
          .map(user => {
             return (
-               <User setUserId={props.setUserId} key={user.id} userPhoto={user.photos} userFollowed={user.followed} userId={user.id} userFullname={user.name}
+               <User key={user.id} userPhoto={user.photos} userFollowed={user.followed} userId={user.id} userFullname={user.name}
                   userLocation={user.location} userStatus={user.status} toggleFollowed={props.toggleFollowed} ></User>
             )
          })

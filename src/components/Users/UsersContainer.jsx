@@ -2,7 +2,6 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentPage, setTotalCount, setUsers, toggleFollowed, toggleIsFetching, } from '../../redux/usersReducer';
-import { setUserId } from '../../redux/profileReducer';
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
@@ -47,7 +46,6 @@ class UsersContainer extends React.Component {
                onpageChange={this.onpageChange}
                toggleFollowed={this.props.toggleFollowed}
                users={this.props.users}
-               setUserId={this.props.setUserId}
             />
          </>
       )
@@ -89,5 +87,5 @@ export default connect(mapStateToProps, {
    setTotalCount,
    setCurrentPage,
    toggleIsFetching,
-   setUserId,
+
 })(UsersContainer);

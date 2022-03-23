@@ -23,9 +23,10 @@ function App(props) {
         <div className='wrapper-content'>
           {/* <Profile></Profile> */}
           <Routes>
-            <Route path="/profile/*" element={<ProfileContainer />} />
-            <Route path="/dialogs/*" element={<DialogsContainer
-            />} />
+            <Route path="/profile" element={<ProfileContainer />} >
+              <Route path=":userId" element={<ProfileContainer />} />
+            </Route>
+            <Route path="/dialogs/*" element={<DialogsContainer />} />
             <Route path="/music/" element={<Music />} />
             <Route path="/news/" element={<News />} />
             <Route path="/settings/" element={<Settings />} />

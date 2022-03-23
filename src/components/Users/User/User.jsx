@@ -9,7 +9,7 @@ function User(props) {
       <div className={classes.user}>
          <div>
             <div>
-               <NavLink to="/profile" onClick={() => { return (props.setUserId(props.userId)) }}>
+               <NavLink to={`/profile/${props.userId}`} >
                   <img className={classes.photo} src={props.userPhoto.small != null ? props.userPhoto.small : userPhoto} alt="" />
                </NavLink>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css'
 
-function Profile(props) {
+function ProfileInfo(props) {
    // console.log(props);
    if (!props.profileUserData) {
       return <Preloader></Preloader>
@@ -22,4 +22,4 @@ function Profile(props) {
    );
 }
 
-export default Profile;
+export default ProfileInfo;
