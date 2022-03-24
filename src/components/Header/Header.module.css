@@ -2,8 +2,16 @@
    grid-area: h;
    background-color: rgb(36, 190, 165);
    margin: 0px 0px 10px 0px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0px 10px;
 }
 .header__img {
    max-height: 100%;
    object-fit: cover;
+}
+.auth {
+   color: #fff;
+   text-decoration: none;
 }
