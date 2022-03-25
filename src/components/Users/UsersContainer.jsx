@@ -10,7 +10,7 @@ class UsersContainer extends React.Component {
 
    componentDidMount() {
       this.props.toggleIsFetching(true);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { withCredentials: true })
          .then(response => {
             this.props.setTotalCount(response.data.totalCount);
             this.props.setUsers(response.data.items);
@@ -27,14 +27,43 @@ class UsersContainer extends React.Component {
       this.props.toggleIsFetching(true);
 
       // console.log(this.props);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${+e.target.innerHTML}&count=${this.props.pageSize}`)
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${+e.target.innerHTML}&count=${this.props.pageSize}`, { withCredentials: true })
          .then(response => {
             this.props.setUsers(response.data.items);
             this.props.toggleIsFetching(false);
          });
    }
 
-
+   toggleFollow = (id, follow) => {
+      if (!follow) {
+         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+            {},
+            {
+               withCredentials: true,
+               headers: {
+                  "API-KEY": "a897fd07-b0ba-4571-9df5-d4d24e8009a5"
+               }
+            })
+            .then(response => {
+               if (response.data.resultCode === 0) {
+                  this.props.toggleFollowed(id);
+               }
+            })
+      } else {
+         axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+            {
+               withCredentials: true,
+               headers: {
+                  "API-KEY": "a897fd07-b0ba-4571-9df5-d4d24e8009a5"
+               }
+            })
+            .then(response => {
+               if (response.data.resultCode === 0) {
+                  this.props.toggleFollowed(id);
+               }
+            })
+      }
+   }
 
    render() {
       return (
@@ -44,8 +73,8 @@ class UsersContainer extends React.Component {
                pageSize={this.props.pageSize}
                currentPage={this.props.currentPage}
                onpageChange={this.onpageChange}
-               toggleFollowed={this.props.toggleFollowed}
                users={this.props.users}
+               toggleFollow={this.toggleFollow}
             />
          </>
       )

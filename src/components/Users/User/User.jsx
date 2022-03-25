@@ -4,7 +4,9 @@ import userPhoto from '../../../assets/images/userMale.png'
 import { NavLink } from 'react-router-dom';
 
 function User(props) {
-
+   // let togleFollowed = (id) => {
+   //    props.toggleFollowed(id);
+   // }
    return (
       <div className={classes.user}>
          <div>
@@ -14,8 +16,8 @@ function User(props) {
                </NavLink>
             </div>
             <div>{props.userFollowed === true ?
-               <button className={classes.btn} onClick={() => { props.toggleFollowed(props.userId) }}>follow</button> :
-               <button className={classes.btn} onClick={() => { props.toggleFollowed(props.userId) }}>unfollow</button>
+               <button className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >unfollow</button> :
+               <button className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >follow</button>
             }</div>
          </div>
          <div className={classes.info}>
