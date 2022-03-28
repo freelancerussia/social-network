@@ -32,3 +32,10 @@
    width: 150px;
    height: 100px;
 }
+
+.btn:disabled {
+   cursor: default;
+   color: #fff;
+   background-color: transparent;
+   opacity: 0.5;
+}

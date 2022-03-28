@@ -9,7 +9,7 @@ let Users = (props) => {
          .map(user => {
             return (
                <User key={user.id} userPhoto={user.photos} userFollowed={user.followed} userId={user.id} userFullname={user.name}
-                  userLocation={user.location} userStatus={user.status} toggleFollow={props.toggleFollow} ></User>
+                  userLocation={user.location} userStatus={user.status} toggleFollow={props.toggleFollow} isFollowingProgress={props.isFollowingProgress} ></User>
             )
          })
    }

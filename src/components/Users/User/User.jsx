@@ -16,8 +16,8 @@ function User(props) {
                </NavLink>
             </div>
             <div>{props.userFollowed === true ?
-               <button className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >unfollow</button> :
-               <button className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >follow</button>
+               <button disabled={props.isFollowingProgress.some(id => id === props.userId)} className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >unfollow</button> :
+               <button disabled={props.isFollowingProgress.some(id => id === props.userId)} className={classes.btn} onClick={() => props.toggleFollow(props.userId, props.userFollowed)} >follow</button>
             }</div>
          </div>
          <div className={classes.info}>
