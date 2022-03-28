@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import Profile from './Profile';
 import { setProfileUserData } from '../../redux/profileReducer';
+import { usersAPI } from '../../api/api';
 
 
 const withRouter = WrappedComponent => props => {
@@ -26,7 +27,8 @@ class ProfileContainer extends React.Component {
       if (!userId) {
          userId = 2;
       }
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+      // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+      usersAPI.setProfile(userId)
          .then(response => {
             // debugger;
             this.props.setProfileUserData(response.data);
