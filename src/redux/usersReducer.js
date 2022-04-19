@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const TOGGLE_FOLLOWED = "TOGGLE_FOLLOWED";
 const SET_USERS = "SET_USERS";
 const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
@@ -13,6 +15,7 @@ let initialState = {
    isFetching: true,
    isFollowingProgress: []
 };
+
 function usersReducer(state = initialState, action) {
    switch (action.type) {
 
@@ -69,5 +72,43 @@ export let setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount 
 export let setCurrentPage = (pageNumber) => ({ type: SET_PAGE_NUMBER, pageNumber });
 export let toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export let toggleIsFollowingProgress = (isFetching, id) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, id });
+
+export const getUsers = (currentPage, pageSize) => {
+   return (dispatch) => {
+      dispatch(toggleIsFetching(true));
+      usersAPI.getUsers(currentPage, pageSize)
+         .then(data => {
+            dispatch(setTotalCount(data.totalCount));
+            dispatch(setUsers(data.items));
+            dispatch(toggleIsFetching(false));
+         });
+   }
+}
+export const follow = (userId) => {
+   return (dispatch) => {
+      dispatch(toggleIsFollowingProgress(true, userId));
+      usersAPI.addAsFrind(userId)
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               dispatch(toggleFollowed(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+
+         })
+   }
+}
+export const unfollow = (userId) => {
+   return (dispatch) => {
+      dispatch(toggleIsFollowingProgress(true, userId));
+      usersAPI.removeFromFrinds(userId)
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               dispatch(toggleFollowed(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+
+         })
+   }
+}
 
 export default usersReducer;

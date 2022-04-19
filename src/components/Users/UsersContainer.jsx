@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { usersAPI } from '../../api/api';
-import { setCurrentPage, setTotalCount, setUsers, toggleFollowed, toggleIsFetching, toggleIsFollowingProgress, } from '../../redux/usersReducer';
+import { setCurrentPage, setTotalCount, setUsers, toggleFollowed, toggleIsFetching, toggleIsFollowingProgress, getUsers, follow, unfollow } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
@@ -10,52 +10,20 @@ import Users from './Users';
 class UsersContainer extends React.Component {
 
    componentDidMount() {
-      this.props.toggleIsFetching(true);
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-         .then(data => {
-            this.props.setTotalCount(data.totalCount);
-            this.props.setUsers(data.items);
-            this.props.toggleIsFetching(false);
-
-            // console.log(response.data.items);
-
-         });
+      this.props.getUsers(this.props.currentPage, this.props.pageSize)
    }
 
    onpageChange = (e) => {
       this.props.setCurrentPage(+e.target.innerHTML);
-      this.props.toggleIsFetching(true);
-
-      usersAPI.getUsers(+e.target.innerHTML, this.props.pageSize)
-         .then(data => {
-            this.props.setUsers(data.items);
-            this.props.toggleIsFetching(false);
-         });
+      this.props.getUsers(+e.target.innerHTML, this.props.pageSize)
    }
 
    toggleFollow = (id, follow) => {
       // console.log(this.props.isFollowingProgress.some(id => id === id));
       if (!follow) {
-         this.props.toggleIsFollowingProgress(true, id);
-         usersAPI.addAsFrind(id)
-            .then(response => {
-               if (response.data.resultCode === 0) {
-                  this.props.toggleFollowed(id);
-               }
-               this.props.toggleIsFollowingProgress(false, id);
-
-            })
+         this.props.follow(id);
       } else {
-         this.props.toggleIsFollowingProgress(true, id);
-
-         usersAPI.removeFromFrinds(id)
-            .then(response => {
-               if (response.data.resultCode === 0) {
-                  this.props.toggleFollowed(id);
-               }
-               this.props.toggleIsFollowingProgress(false, id);
-
-            })
+         this.props.unfollow(id);
       }
    }
 
@@ -107,11 +75,8 @@ let mapStateToProps = (state) => {
 // }
 
 export default connect(mapStateToProps, {
-   toggleFollowed,
-   setUsers,
-   setTotalCount,
-   setCurrentPage,
-   toggleIsFetching,
-   toggleIsFollowingProgress
+   getUsers,
+   follow,
+   unfollow
 
 })(UsersContainer);

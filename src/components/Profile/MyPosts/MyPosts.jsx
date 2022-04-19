@@ -22,7 +22,7 @@ function MyPosts(props) {
 
    let onPostChange = (e) => {
       let text = e.target.value;
-      props.updateNewPostText(text);
+      props.updateNewwPostText(text);
       // props.dispatch(updateNewwPostTextCreate(text));
 
    }
