@@ -62,7 +62,7 @@ export let addPost = () => ({ type: ADD_POST });
 export let updateNewwPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 export let setProfileUserData = (profileUser) => ({ type: SET_PROFILE_USER_DATA, profileUser });
 
-export const setProfileUser = (userId) => {
+export const getProfileUser = (userId) => {
    return dispatch => {
       usersAPI.setProfile(userId)
          .then(response => {
