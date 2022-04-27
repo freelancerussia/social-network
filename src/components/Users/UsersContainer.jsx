@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { setCurrentPage, setTotalCount, setUsers, toggleFollowed, toggleIsFetching, toggleIsFollowingProgress, getUsers, follow, unfollow } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 import Login from '../Login/Login';
@@ -29,8 +30,6 @@ class UsersContainer extends React.Component {
    }
 
    render() {
-      if (!this.props.isAuthMe) return <Navigate to="/login" />
-
       return (
          <>
             {this.props.isFetching ? <Preloader /> : null}
@@ -55,8 +54,6 @@ let mapStateToProps = (state) => {
       currentPage: state.usersPage.currentPage,
       isFetching: state.usersPage.isFetching,
       isFollowingProgress: state.usersPage.isFollowingProgress,
-      isAuthMe: state.auth.isAuthMe
-
    }
 }
 // let mapDispatchToProps = (dispatch) => {
@@ -78,11 +75,11 @@ let mapStateToProps = (state) => {
 //       }
 //    }
 // }
-
+let usersRedirect = withAuthRedirect(UsersContainer);
 export default connect(mapStateToProps, {
    getUsers,
    follow,
    unfollow,
    setCurrentPage
 
-})(UsersContainer);
+})(usersRedirect);
