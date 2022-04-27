@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import Profile from './Profile';
 import { getProfileUser } from '../../redux/profileReducer';
+import Login from '../Login/Login';
 
 
 const withRouter = (WrappedComponent) => {
@@ -38,6 +39,7 @@ class ProfileContainer extends React.Component {
    }
 
    render() {
+      if (!this.props.isAuthMe) return <Navigate to="/login/" />
       return (
          <Profile {...this.props}></Profile>
       )
@@ -47,6 +49,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
    return {
       profileUserData: state.profilePage.profileUserData,
+      isAuthMe: state.auth.isAuthMe
 
    }
 }

@@ -7,7 +7,7 @@ let initialState = {
    userId: null,
    login: null,
    email: null,
-   isFetching: false
+   isAuthMe: false
 
 };
 
@@ -19,7 +19,7 @@ function authReducer(state = initialState, action) {
          return {
             ...state,
             ...action.data,
-            isFetching: true
+            isAuthMe: true
          }
 
       default:

@@ -1,4 +1,5 @@
 import React from "react";
+import Login from "../Login/Login";
 import Dialog from "./Dialog/Dialog";
 import classes from "./Dialogs.module.css"
 import Message from "./Message/Message";
@@ -25,6 +26,7 @@ function Dialogs(props) {
       props.updateNewPostText(text);
 
    }
+   if (!props.isAuthMe) return <Login />
 
    return (
       <div className={classes.dialogs}>
