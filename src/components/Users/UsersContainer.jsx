@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { setCurrentPage, setTotalCount, setUsers, toggleFollowed, toggleIsFetching, toggleIsFollowingProgress, getUsers, follow, unfollow } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
@@ -75,11 +76,23 @@ let mapStateToProps = (state) => {
 //       }
 //    }
 // }
-let usersRedirect = withAuthRedirect(UsersContainer);
-export default connect(mapStateToProps, {
-   getUsers,
-   follow,
-   unfollow,
-   setCurrentPage
 
-})(usersRedirect);
+
+
+export default compose( // это вместо того, что ниже закомменчено
+   connect(mapStateToProps, {
+      getUsers,
+      follow,
+      unfollow,
+      setCurrentPage
+   }),
+   withAuthRedirect
+)(UsersContainer);
+// let usersRedirect = withAuthRedirect(UsersContainer);
+// export default connect(mapStateToProps, {
+//    getUsers,
+//    follow,
+//    unfollow,
+//    setCurrentPage
+
+// })(usersRedirect);

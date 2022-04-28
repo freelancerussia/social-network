@@ -2,6 +2,7 @@ import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css'
 import usermale from "../../../assets/images/userMale.png"
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 function ProfileInfo(props) {
    // console.log(props);
@@ -10,13 +11,14 @@ function ProfileInfo(props) {
    }
    return (
       <div>
-         <div>
+         {/* <div>
             <img className={classes.img} src="https://static-cse.canva.com/blob/759807/vk1776.e44b8161.avif"></img>
-         </div>
+         </div> */}
          <div>
             <div className={classes.userPhoto} ><img src={props.profileUserData.photos.small || usermale} /></div>
             <div>{props.profileUserData.fullName}</div>
-            ava + desc
+            <ProfileStatus status="yo-yo-yooooo"></ProfileStatus>
+
          </div>
       </div>
 
