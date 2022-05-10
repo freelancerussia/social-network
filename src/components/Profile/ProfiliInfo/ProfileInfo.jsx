@@ -17,7 +17,7 @@ function ProfileInfo(props) {
          <div>
             <div className={classes.userPhoto} ><img src={props.profileUserData.photos.small || usermale} /></div>
             <div>{props.profileUserData.fullName}</div>
-            <ProfileStatus status="yo-yo-yooooo"></ProfileStatus>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}></ProfileStatus>
 
          </div>
       </div>
